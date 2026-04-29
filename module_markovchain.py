@@ -11,10 +11,11 @@ class MarkovChain:
         pass
 
     def step(self):
+        ##
         pass
 
     def check_regularity(self):
-
+        # 
         
         pass
 
