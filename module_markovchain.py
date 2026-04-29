@@ -8,10 +8,12 @@ class MarkovChain:
         self.required_steps = None
 
     def read_chain_from_file(self,path):
+        print("hello world")
         pass
 
     def step(self):
         ##
+        ## test stephany
         pass
 
     def check_regularity(self):
