@@ -8,7 +8,6 @@ class MarkovChain:
         self.required_steps = None
 
     def read_chain_from_file(self,path):
-        "test"
         pass
 
     def step(self):
