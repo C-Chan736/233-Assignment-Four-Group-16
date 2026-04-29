@@ -36,6 +36,6 @@ class MarkovChain:
             else:
                 fp.write('No steps have been performed.')
             for final_state in self.state:
-                fp.write(f"{final_state.1f}\n")
+                fp.write(f"{final_state:.1f}\n")
 
 
