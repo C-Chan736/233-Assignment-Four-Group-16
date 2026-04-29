@@ -12,6 +12,7 @@ class MarkovChain:
 
     def step(self):
         ##
+        ## test stephany
         pass
 
     def check_regularity(self):
