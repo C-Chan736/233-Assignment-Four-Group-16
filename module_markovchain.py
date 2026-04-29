@@ -22,7 +22,7 @@ class MarkovChain:
         pass
 
     def write_solution_to_file(self, path):
-        is_regular = self.check_regularity()
+        is_regular = self.check_regularity
         self.step()
         with open(path, 'w') as fp:
             if is_regular == 1:
@@ -36,6 +36,6 @@ class MarkovChain:
             else:
                 fp.write('No steps have been performed.')
             for final_state in self.state:
-                fp.write(f"{final_state.1f}\n")
+                fp.write(f"{final_state:.1f}\n")
 
 
