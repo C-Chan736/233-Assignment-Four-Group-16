@@ -1,0 +1,4 @@
+The Markov Chain is not regular
+The state hgit as stepped forward by 3 step(s)
+235.0
+365.0
