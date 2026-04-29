@@ -14,6 +14,8 @@ class MarkovChain:
         pass
 
     def check_regularity(self):
+
+        
         pass
 
     def write_solution_to_file(self,path):
