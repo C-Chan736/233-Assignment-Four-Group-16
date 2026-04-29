@@ -22,6 +22,15 @@ class MarkovChain:
         pass
 
     def write_solution_to_file(self, path):
+        """
+        Evaluates the Markov Chain, advances its state, and writes the results to a file.
+
+        Arguments
+        ---------
+        path : str
+            The file path where the solution output will be written.
+            Creates or overwrites the file at the given path.
+        """
         is_regular = self.check_regularity
         self.step()
         with open(path, 'w') as fp:
