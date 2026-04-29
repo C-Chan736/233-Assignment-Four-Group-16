@@ -14,6 +14,12 @@ class MarkovChain:
     def step(self):
         n = self.required_steps
 
+        stepped_matrix = np.linalg.matrix_power(n, self.transition_matrix)
+
+        self.state = np.dot(self.state, stepped_matrix)
+
+        self.time_step += n
+
         pass
 
     def check_regularity(self):
