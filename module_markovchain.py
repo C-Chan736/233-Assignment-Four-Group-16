@@ -14,7 +14,7 @@ class MarkovChain:
         pass
 
     def check_regularity(self):
-        # 
+        #
         
         pass
 
