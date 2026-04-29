@@ -12,8 +12,8 @@ class MarkovChain:
         pass
 
     def step(self):
-        ##
-        ## test stephany
+        n = self.required_steps
+
         pass
 
     def check_regularity(self):
@@ -39,7 +39,7 @@ class MarkovChain:
             else:
                 fp.write('The Markov Chain is not regular\n')
             if self.required_steps > 0:
-                fp.write(f"The state has stepped forward by {self.required_steps} step(s)\n")
+                fp.write(f"The state hgit as stepped forward by {self.required_steps} step(s)\n")
             elif self.required_steps < 0:
                 fp.write(f"The state has stepped backward by {self.required_steps} step(s)\n")
             else:
