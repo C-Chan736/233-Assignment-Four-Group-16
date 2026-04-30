@@ -1,6 +1,40 @@
 import numpy as np
 
 class MarkovChain:
+    """
+    A class represents and solves a Markov Chain system
+
+    This class reads Markov Chain data from a file, performs
+    state transitions both forward and backward in time using matrix algebra,
+    verifies the regularity of the system, and outputs the results to a formatted text file.
+
+    Attributes
+    ----------
+    state : ndarray
+        A 1D NumPy array representing the current population or probability
+        distribution across the states of the system
+    transition_matrix : ndarray
+        A 2D square NumPy array where element T[i, j] represents the transition
+        probability from state j to state i
+    time_step : int
+        The cumulative number of steps the system has moved from its initial
+        state (can be positive or negative)
+    required_steps : int
+        The number of steps specified by the input data to move the system during
+        the next calculation
+
+    Methods
+    -------
+    read_chain_from_file(path)
+        CLAUDIA FILL THIS IN
+    step()
+        Updates the state vector by applying the transition matrix raised
+        to the power of required_steps
+    check_regularity()
+        SIENNA FILL THIS IN
+    write_solution_to_file(path)
+        HUNTER FILL THIS IN
+    """
     def __init__(self):
         self.time_step = 0
         self.state = None
