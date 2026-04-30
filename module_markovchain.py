@@ -31,7 +31,7 @@ class MarkovChain:
         Updates the state vector by applying the transition matrix raised
         to the power of required_steps
     check_regularity()
-        SIENNA FILL THIS IN
+        Returns a boolean that is True if the Markov Chain is regular, and False otherwise
     write_solution_to_file(path)
         HUNTER FILL THIS IN
     """
