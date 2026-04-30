@@ -87,7 +87,6 @@ class MarkovChain:
             Creates or overwrites the file at the given path.
         """
         is_regular = self.check_regularity
-        self.step()
         with open(path, 'w') as fp:
             if is_regular == 1:
                 fp.write('The Markov Chain is regular\n')
