@@ -53,16 +53,21 @@ class MarkovChain:
 
         """
 
+        # set n
         n = self.required_steps
 
+        # for an n x n matrix max m for T^m is given by:
         m_max = (n-1)**2 + 1
 
+        # calculate T^m (tm) for values of m up to m_max
         for m in range(1, m_max + 1):
             tm = np.linalg.matrix_power(self.transition_matrix, m)
 
+            # if every element in matrix tm is > 0 return True
             if np.all(tm > 0):
                 return True
 
+        # if no matrix contains all positive values return False
         return False
 
     def write_solution_to_file(self, path):
