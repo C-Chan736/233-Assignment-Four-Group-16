@@ -2,7 +2,13 @@
 import numpy as np
 from module_markovchain import MarkovChain
 
+## TESTING METHOD 1 ##
 
+## TESTING METHOD 2 ##
+
+## TESTING METHOD 3 ##
+
+## TESTING METHOD 4 ##
 
 def test_method_4():
     chain = MarkovChain()
