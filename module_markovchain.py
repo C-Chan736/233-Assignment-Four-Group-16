@@ -26,16 +26,11 @@ class MarkovChain:
         # Create n, the required number of steps to take
         n = self.required_steps
 
-        # DEBUGGING
-        print("Current Matrix: \n", self.transition_matrix)
-        print("Current State: ", self.state)
-
         # Calculate the n-th power of the transition matrix
         stepped_matrix = np.linalg.matrix_power(self.transition_matrix, n)
 
         # Update the state vector (no.dot using column vector convention)
         new_state = np.dot(stepped_matrix, self.state)
-        print(f"debugging: calculation result is {new_state}")
         self.state = new_state
 
         # Increment time_step with number of steps taken

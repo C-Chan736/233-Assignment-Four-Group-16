@@ -55,8 +55,6 @@ def test_step_backward():
     assert mc.time_step == 0
     print("test_step_backward: PASSED")
 
-    print("testing method 2 ends here")
-
 ## TESTING METHOD 3 ##
 
 def test_method_3():
