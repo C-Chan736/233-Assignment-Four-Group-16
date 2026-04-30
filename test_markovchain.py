@@ -43,6 +43,8 @@ def test_step_backward():
     assert_allclose(mc.state, expected, atol = 1e-7) # atol = 1e-7 adds tolerance of 0.0000001 to help pass test
     print("test_step_backward: PASSED")
 
+    print("testing method 2 ends here")
+
 ## TESTING METHOD 3 ##
 
 def test_method_3():
