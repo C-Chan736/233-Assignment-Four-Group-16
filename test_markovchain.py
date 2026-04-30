@@ -1,10 +1,47 @@
 #This is to test our file
 import numpy as np
 from module_markovchain import MarkovChain
+from numpy.testing import assert_allclose
 
 ## TESTING METHOD 1 ##
 
 ## TESTING METHOD 2 ##
+
+Ptest = [[0.7, 0.2], 0.3, 0.8]
+Vtest = [200, 400]
+
+def test_step_forward():
+    # Test step function works with step of 1
+    mc = MarkovChain(Ptest, Vtest)
+    mc.required_steps = 1
+    mc.step()
+    # Array after 1 step should be [220, 280]
+    expected = np.array([220.0, 380.0])
+    assert_allclose(mc.state, expected)
+    print("test_step_forward: PASSED")
+
+def test_step_multistep():
+    # Test step function works with step of 3
+    mc = MarkovChain(Ptest, Vtest)
+    mc.required_steps = 3
+    mc.step()
+    # Array after 3 steps should be [235, 365]
+    expected = np.array([235.0, 365.0])
+    assert_allclose(mc.state, expected)
+    print("test_step_multistep: PASSED")
+
+def test_step_backward():
+    # Test step function works with step of -1
+    Vtest_1_step_forward = [220.0, 380.0]
+    mc = MarkovChain(Ptest, Vtest_1_step_forward)
+    mc.time_step = 1
+
+    mc.required_steps = -1
+    mc.step()
+    # Array should be [200, 400] after 1 step back
+    expected = np.array([200.0, 400.0])
+    assert_allclose(mc.state, expected, atol = 1e-7) # atol = 1e-7 adds tolerance of 0.0000001 to help pass test
+    print("test_step_backward: PASSED")
 
 ## TESTING METHOD 3 ##
 

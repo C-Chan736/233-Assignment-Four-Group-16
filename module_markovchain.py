@@ -29,8 +29,8 @@ class MarkovChain:
         # Calculate the n-th power of the transition matrix
         stepped_matrix = np.linalg.matrix_power(self.transition_matrix, n)
 
-        # Update the state vector
-        self.state = np.dot(self.state, stepped_matrix)
+        # Update the state vector (no.dot using column vector convention)
+        self.state = np.dot(stepped_matrix, self.state)
 
         # Increment time_step with number of steps taken
         self.time_step += n
