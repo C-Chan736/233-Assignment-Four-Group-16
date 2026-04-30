@@ -36,6 +36,23 @@ class MarkovChain:
         self.time_step += n
 
     def check_regularity(self):
+        """
+        Identifies whether the system is a regular Markov Chain or not
+
+        Returns
+        _______
+        boolean
+            True if Markov Chain is regular, False otherwise
+
+        Methods
+        _______
+        np.linalg.matrix_power(transition_matrix, m)
+            Used to perform matrix multiplication to calculate transition_matrix raised to power m
+        np.all(condition)
+            Used to verify if every element in transition matrix of power m is greater than 0
+
+        """
+
         n = self.required_steps
 
         m_max = (n-1)**2 + 1
@@ -47,7 +64,6 @@ class MarkovChain:
                 return True
 
         return False
-
 
     def write_solution_to_file(self, path):
         """
