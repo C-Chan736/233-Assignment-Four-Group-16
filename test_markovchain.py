@@ -68,26 +68,85 @@ def test_method_3():
 
 ## TESTING METHOD 4 ##
 
-def test_method_4():
+def test_write_solution_to_file_forward():
+    # Create a MarkovChain instance and assign initial attributes
     chain = MarkovChain()
+    chain.state = np.array([200.0, 400.0])
+    chain.transition_matrix = np.array([[0.7, 0.2], [0.3, 0.8]])
+    chain.required_steps = 1
 
-    chain.state = np.array([235.0, 365.0])
-    chain.transition_matrix = np.array([
-        [0.7, 0.2],
-        [0.3, 0.8]
-    ])
-    chain.required_steps = 3
+    # Write the solution to a file
+    chain.write_solution_to_file("test_forward.txt")
 
-    chain.write_solution_to_file("test_output.txt")
+    # Read the output file and store each line
+    with open("test_forward.txt", "r") as fp:
+        lines = fp.readlines()
 
-    with open("test_output.txt", "r") as fp:
-        print(fp.read())
+    # Check regularity, step direction, and final state values
+    assert lines[0] == "The Markov Chain is regular.\n"
+    assert lines[1] == "The state has stepped forward by 1 step(s).\n"
+    assert lines[2] == "220.0\n"
+    assert lines[3] == "380.0\n"
+    print("test_write_solution_to_file_forward: PASSED")
 
 
-test_method_4()
+def test_write_solution_to_file_backward():
+    # Create a MarkovChain instance and assign initial attributes
+    # State is set to the result of 1 forward step so we can reverse it
+    chain = MarkovChain()
+    chain.state = np.array([220.0, 380.0])
+    chain.transition_matrix = np.array([[0.7, 0.2], [0.3, 0.8]])
+    chain.time_step = 1
+    chain.required_steps = -1
+
+    # Write the solution to a file
+    chain.write_solution_to_file("test_backward.txt")
+
+    # Read the output file and store each line
+    with open("test_backward.txt", "r") as fp:
+        lines = fp.readlines()
+
+    # Check regularity, step direction, and final state values
+    assert lines[0] == "The Markov Chain is regular.\n"
+    assert lines[1] == "The state has stepped backward by 1 step(s).\n"
+    assert lines[2] == "200.0\n"
+    assert lines[3] == "400.0\n"
+    print("test_write_solution_to_file_backward: PASSED")
+
+
+def test_write_solution_to_file_no_steps():
+    # Create a MarkovChain instance and assign initial attributes
+    chain = MarkovChain()
+    chain.state = np.array([200.0, 400.0])
+    chain.transition_matrix = np.array([[0.7, 0.2], [0.3, 0.8]])
+    chain.required_steps = 0
+
+    # Write the solution to a file
+    chain.write_solution_to_file("test_no_steps.txt")
+
+    # Read the output file and store each line
+    with open("test_no_steps.txt", "r") as fp:
+        lines = fp.readlines()
+
+    # Check regularity, no steps message, and state is unchanged
+    assert lines[0] == "The Markov Chain is regular.\n"
+    assert lines[1] == "No steps have been performed.\n"
+    assert lines[2] == "200.0\n"
+    assert lines[3] == "400.0\n"
+    print("test_write_solution_to_file_no_steps: PASSED")
 
 
 if __name__ == "__main__":
+    #Test Method 1
+
+
+    #Test Method 2
     test_step_forward()
     test_step_multistep()
     test_step_backward()
+    #Test Method 3
+    test_method_3()
+    #Test Method 4
+    test_write_solution_to_file_forward()
+    test_write_solution_to_file_backward()
+    test_write_solution_to_file_no_steps()

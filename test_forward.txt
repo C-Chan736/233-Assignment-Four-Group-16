@@ -1,0 +1,4 @@
+The Markov Chain is regular.
+The state has stepped forward by 1 step(s).
+220.0
+380.0

@@ -1,0 +1,4 @@
+The Markov Chain is regular.
+No steps have been performed.
+200.0
+400.0

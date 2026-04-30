@@ -2,7 +2,7 @@ import numpy as np
 
 class MarkovChain:
     """
-    A class represents and solves a Markov Chain system
+    A class that represents and solves a Markov Chain system
 
     This class reads Markov Chain data from a file, performs
     state transitions both forward and backward in time using matrix algebra,
@@ -33,7 +33,9 @@ class MarkovChain:
     check_regularity()
         Returns a boolean that is True if the Markov Chain is regular, and False otherwise
     write_solution_to_file(path)
-        HUNTER FILL THIS IN
+        Calls step() to calculate the final state, calls check_regularity()
+        to determine whether the Markov Chain is regular, then writes the
+        regularity, step direction, and final state values to a formatted text file.
     """
     def __init__(self):
         self.time_step = 0
@@ -105,6 +107,7 @@ class MarkovChain:
         # if no matrix contains all positive values return False
         return False
 
+
     def write_solution_to_file(self, path):
         """
         Evaluates the Markov Chain, advances its state, and writes the results to a file.
@@ -115,20 +118,27 @@ class MarkovChain:
             The file path where the solution output will be written.
             Creates or overwrites the file at the given path.
         """
+
+        # Check whether the Markov Chain is regular before writing the result. Using Method 4
         is_regular = self.check_regularity()
+
+        # Advance the current state by the required number of steps. Using Method 2
         self.step()
+
+        # Open the output file in write mode.
         with open(path, 'w') as fp:
-            if is_regular == 1:
-                fp.write('The Markov Chain is regular\n')
+            # Write line 1: whether the Markov Chain is regular or not.
+            if is_regular:
+                fp.write('The Markov Chain is regular.\n')
             else:
-                fp.write('The Markov Chain is not regular\n')
+                fp.write('The Markov Chain is not regular.\n')
+            # Write line 2: describe whether the chain stepped forward, stepped backward, or did not step at all.
             if self.required_steps > 0:
-                fp.write(f"The state has stepped forward by {self.required_steps} step(s)\n")
+                fp.write(f"The state has stepped forward by {self.required_steps} step(s).\n")
             elif self.required_steps < 0:
-                fp.write(f"The state has stepped backward by {self.required_steps} step(s)\n")
+                fp.write(f"The state has stepped backward by {abs(self.required_steps)} step(s).\n")
             else:
-                fp.write('No steps have been performed.')
+                fp.write('No steps have been performed.\n')
+            # Write the final state values.
             for final_state in self.state:
                 fp.write(f"{final_state:.1f}\n")
-
-
