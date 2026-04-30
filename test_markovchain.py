@@ -77,3 +77,8 @@ def test_method_4():
 test_method_4()
 
 
+if __name__ == "__main__":
+    test_step_forward()
+    test_step_multistep()
+    test_step_backward()
+    print("tested 3 tests for method 2")
