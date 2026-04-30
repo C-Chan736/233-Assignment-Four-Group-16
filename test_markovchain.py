@@ -8,6 +8,15 @@ from module_markovchain import MarkovChain
 
 ## TESTING METHOD 3 ##
 
+def test_method_3():
+    markov_chain = MarkovChain()
+    markov_chain.transition_matrix = np.array([
+        [0.7, 0.2],
+        [0.3, 0.8]
+    ])
+    result = markov_chain.check_regularity()
+    assert (result == True)
+
 ## TESTING METHOD 4 ##
 
 def test_method_4():
