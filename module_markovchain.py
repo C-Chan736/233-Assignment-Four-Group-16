@@ -12,15 +12,28 @@ class MarkovChain:
         pass
 
     def step(self):
+        """
+        Calculates the state of the system after n number of steps
+        Updates state vector and increments number of steps taken
+
+        Methods
+        -------
+        np.linalg.matrix_power(M, n)
+            calculates the transition matrix M after n steps
+        np.dot(V, P)
+            transitions the state vector V according to matrix P
+        """
+        # Create n, the required number of steps to take
         n = self.required_steps
 
-        stepped_matrix = np.linalg.matrix_power(n, self.transition_matrix)
+        # Calculate the n-th power of the transition matrix
+        stepped_matrix = np.linalg.matrix_power(self.transition_matrix, n)
 
+        # Update the state vector
         self.state = np.dot(self.state, stepped_matrix)
 
+        # Increment time_step with number of steps taken
         self.time_step += n
-
-        pass
 
     def check_regularity(self):
         n = self.required_steps
