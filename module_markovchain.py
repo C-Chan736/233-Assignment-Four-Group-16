@@ -36,9 +36,18 @@ class MarkovChain:
         self.time_step += n
 
     def check_regularity(self):
-        # 
-        
-        pass
+        n = self.required_steps
+
+        m_max = (n-1)**2 + 1
+
+        for m in range(1, m_max + 1):
+            tm = np.linalg.matrix_power(self.transition_matrix, m)
+
+            if np.all(tm > 0):
+                return True
+
+        return False
+
 
     def write_solution_to_file(self, path):
         """
