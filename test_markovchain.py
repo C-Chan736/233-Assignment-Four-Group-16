@@ -12,7 +12,7 @@ def test_step_forward():
     mc = MarkovChain()
 
     # Assign attributes
-    mc.transition_matrix = np.array([[0.2, 0.2], [0.3, 0.8]])
+    mc.transition_matrix = np.array([[0.7, 0.2], [0.3, 0.8]])
     mc.state = np.array([200.0, 400.0])
     mc.required_steps = 1
 
