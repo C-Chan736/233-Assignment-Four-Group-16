@@ -1,4 +1,4 @@
 The Markov Chain is not regular
 The state has stepped forward by 3 step(s)
-303.2
-319.5
+239.4
+360.6

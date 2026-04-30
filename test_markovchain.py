@@ -7,7 +7,7 @@ from numpy.testing import assert_allclose
 
 ## TESTING METHOD 2 ##
 
-Ptest = [[0.7, 0.2], 0.3, 0.8]
+Ptest = [[0.7, 0.2], [0.3, 0.8]]
 Vtest = [200, 400]
 
 def test_step_forward():
