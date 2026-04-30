@@ -54,7 +54,7 @@ class MarkovChain:
         """
 
         # set n
-        n = self.required_steps
+        n = self.transition_matrix.shape[0]
 
         # for an n x n matrix max m for T^m is given by:
         m_max = (n-1)**2 + 1
