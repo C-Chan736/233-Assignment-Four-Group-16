@@ -34,7 +34,9 @@ class MarkovChain:
         stepped_matrix = np.linalg.matrix_power(self.transition_matrix, n)
 
         # Update the state vector (no.dot using column vector convention)
-        self.state = np.dot(stepped_matrix, self.state)
+        new_state = np.dot(stepped_matrix, self.state)
+        print(f"debugging: calculation result is {new_state}")
+        self.state = new_state
 
         # Increment time_step with number of steps taken
         self.time_step += n
