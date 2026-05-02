@@ -67,14 +67,14 @@ class MarkovChain:
         n = int(lines[0])
 
         # Read the initial state vector from the second line
-        self.state = np.array(lines[1].split())
+        self.state = np.array(lines[1].split(), dtype=float)
 
         # Read the next n lines to build the transition matrix row by row
         self.transition_matrix = []
         for i in range(n):
             row = lines[i + 2].split()
             self.transition_matrix.append(row)
-        self.transition_matrix = np.array(self.transition_matrix)
+        self.transition_matrix = np.array(self.transition_matrix, dtype=float)
 
         # Read the required number of steps from the final line
         self.required_steps = int(lines[n + 2])
