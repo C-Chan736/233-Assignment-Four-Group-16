@@ -37,7 +37,7 @@ def test_transition_matrix():
 # TESTING METHOD 2
 
 def test_step_forward():
-    # Test step function works with step of 1
+    """Test step function works with step of 1"""
     mc = MarkovChain()
 
     # Assign attributes
@@ -52,7 +52,7 @@ def test_step_forward():
 
 
 def test_step_multistep():
-    # Test step function works with step of 3
+    """ Test step function works with step of 3"""
     mc = MarkovChain()
 
     # Assign attributes
@@ -67,7 +67,7 @@ def test_step_multistep():
 
 
 def test_step_backward():
-    # Test step function works with step of -1
+    """ Test step function works with step of -1"""
     mc = MarkovChain()
 
     # Assign attributes
@@ -85,6 +85,7 @@ def test_step_backward():
 
 
 def test_step_zero():
+    """ Test step function works with zero steps"""
     mc = MarkovChain()
     mc.transition_matrix = np.array([[0.7, 0.2], [0.3, 0.8]])
     mc.state = np.array([200.0, 400.0])
@@ -97,23 +98,29 @@ def test_step_zero():
 # TESTING METHOD 3
 
 def test_method_3():
+    """Create a MarkovChain instance and assign a known regular transition matrix"""
     markov_chain = MarkovChain()
     markov_chain.transition_matrix = np.array([
         [0.7, 0.2],
         [0.3, 0.8]
     ])
+    # Check regularity and verify the result is True
     result = markov_chain.check_regularity()
     assert (result == True)
 
 def test_method_3_not_regular():
+    """Create a MarkovChain instance and assign the identity matrix,
+    which is not regular."""
     mc = MarkovChain()
     mc.transition_matrix = np.array([[1, 0],[0, 1]])
+    # Check regularity and verify the result is False
     result = mc.check_regularity()
     assert not result
 
 # TESTING METHOD 4
 
 def test_write_solution_to_file_forward():
+    """Tests that a forward solution can be written to a file"""
     # Create a MarkovChain instance and assign initial attributes
     chain = MarkovChain()
     chain.state = np.array([200.0, 400.0])
@@ -136,8 +143,8 @@ def test_write_solution_to_file_forward():
 
 
 def test_write_solution_to_file_backward():
+    """Tests that a backward solution can be written to a file"""
     # Create a MarkovChain instance and assign initial attributes
-    # State is set to the result of 1 forward step so we can reverse it
     chain = MarkovChain()
     chain.state = np.array([220.0, 380.0])
     chain.transition_matrix = np.array([[0.7, 0.2], [0.3, 0.8]])
