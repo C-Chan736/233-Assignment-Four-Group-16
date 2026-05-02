@@ -135,6 +135,32 @@ def test_write_solution_to_file_no_steps():
     assert lines[3] == "400.0\n"
     print("test_write_solution_to_file_no_steps: PASSED")
 
+    def test_required_steps(self):
+        """Tests that required_steps is read correctly as an int"""
+        mc = MarkovChain()
+        mc.read_chain_from_file('chains/test_input_1.txt')
+        assert mc.required_steps == 3
+        assert isinstance(mc.required_steps, int)
+
+    def test_state(self):
+        """Tests that state is read correctly as a 1D NumPy array"""
+        mc = MarkovChain()
+        mc.read_chain_from_file('chains/test_input_1.txt')
+        expected_state = np.array([200, 400])
+        assert np.array_equal(mc.state, expected_state)
+        assert isinstance(mc.state, np.ndarray)
+        assert mc.state.ndim == 1
+
+    def test_transition_matrix(self):
+        """Tests that transition_matrix is read correctly as a 2D NumPy array"""
+        mc = MarkovChain()
+        mc.read_chain_from_file('chains/test_input_1.txt')
+        expected_matrix = np.array([[0.7, 0.2],
+                                    [0.3, 0.8]])
+        assert np.array_equal(mc.transition_matrix, expected_matrix)
+        assert isinstance(mc.transition_matrix, np.ndarray)
+        assert mc.transition_matrix.ndim == 2
+
 
 if __name__ == "__main__":
     #Test Method 1
