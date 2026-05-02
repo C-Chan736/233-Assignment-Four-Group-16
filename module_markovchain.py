@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class MarkovChain:
     """
     A class that represents and solves a Markov Chain system
@@ -26,7 +27,7 @@ class MarkovChain:
     Methods
     -------
     read_chain_from_file(path)
-        CLAUDIA FILL THIS IN
+        Reads a given data file and updates the attributes accordingly
     step()
         Updates the state vector by applying the transition matrix raised
         to the power of required_steps
@@ -37,15 +38,46 @@ class MarkovChain:
         to determine whether the Markov Chain is regular, then writes the
         regularity, step direction, and final state values to a formatted text file.
     """
+
     def __init__(self):
         self.time_step = 0
         self.state = None
         self.transition_matrix = None
         self.required_steps = None
 
-    def read_chain_from_file(self,path):
-        print("hello world")
-        pass
+    def read_chain_from_file(self, path):
+        """
+        Reads a data file representing the transition matrix and initial state
+        of the Markov Chain and updates the object attributes accordingly.
+
+        Parameters
+        ----------
+        path : str
+            The relative path to the data file.
+        Methods
+        -------
+        np.array(object)
+            Converts a list into a NumPy array.
+        """
+        # Open the file and read all lines
+        with open(path, 'r') as f:
+            lines = f.readlines()
+
+        # Read the number of variables n from the first line
+        n = int(lines[0])
+
+        # Read the initial state vector from the second line
+        self.state = np.array(lines[1].split())
+
+        # Read the next n lines to build the transition matrix row by row
+        self.transition_matrix = []
+        for i in range(n):
+            row = lines[i + 2].split()
+            self.transition_matrix.append(row)
+        self.transition_matrix = np.array(self.transition_matrix)
+
+        # Read the required number of steps from the final line
+        self.required_steps = int(lines[n + 2])
 
     def step(self):
         """
@@ -94,7 +126,7 @@ class MarkovChain:
         n = self.transition_matrix.shape[0]
 
         # for an n x n matrix max m for T^m is given by:
-        m_max = (n-1)**2 + 1
+        m_max = (n - 1) ** 2 + 1
 
         # calculate T^m (tm) for values of m up to m_max
         for m in range(1, m_max + 1):
@@ -106,7 +138,6 @@ class MarkovChain:
 
         # if no matrix contains all positive values return False
         return False
-
 
     def write_solution_to_file(self, path):
         """
