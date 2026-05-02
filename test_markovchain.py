@@ -49,7 +49,6 @@ def test_step_forward():
 
     expected = np.array([220.0, 380.0])
     assert_allclose(mc.state, expected)
-    print("test_step_forward: PASSED")
 
 
 def test_step_multistep():
@@ -65,7 +64,6 @@ def test_step_multistep():
 
     expected = np.array([235.0, 365.0])  # Array should be [235, 365] after 3 steps
     assert_allclose(mc.state, expected)
-    print("test_step_multistep: PASSED")
 
 
 def test_step_backward():
@@ -84,7 +82,16 @@ def test_step_backward():
     expected = np.array([200.0, 400.0])
     assert_allclose(mc.state, expected, atol=1e-7)  # atol = 1e-7 handles tiny decimal
     assert mc.time_step == 0
-    print("test_step_backward: PASSED")
+
+
+def test_step_zero():
+    mc = MarkovChain()
+    mc.transition_matrix = np.array([[0.7, 0.2], [0.3, 0.8]])
+    mc.state = np.array([200.0, 400.0])
+    mc.required_steps = 0
+    mc.step()
+    assert_allclose(mc.state, np.array([200.0, 400.0]))
+    assert mc.time_step == 0
 
 
 # TESTING METHOD 3
@@ -98,6 +105,11 @@ def test_method_3():
     result = markov_chain.check_regularity()
     assert (result == True)
 
+def test_method_3_not_regular():
+    mc = MarkovChain()
+    mc.transition_matrix = np.array([[1, 0],[0, 1]])
+    result = mc.check_regularity()
+    assert not result
 
 # TESTING METHOD 4
 
@@ -120,7 +132,7 @@ def test_write_solution_to_file_forward():
     assert lines[1] == "The state has stepped forward by 1 step(s).\n"
     assert lines[2] == "220.0\n"
     assert lines[3] == "380.0\n"
-    print("test_write_solution_to_file_forward: PASSED")
+
 
 
 def test_write_solution_to_file_backward():
@@ -144,7 +156,7 @@ def test_write_solution_to_file_backward():
     assert lines[1] == "The state has stepped backward by 1 step(s).\n"
     assert lines[2] == "200.0\n"
     assert lines[3] == "400.0\n"
-    print("test_write_solution_to_file_backward: PASSED")
+
 
 
 if __name__ == "__main__":
@@ -156,9 +168,11 @@ if __name__ == "__main__":
     test_step_forward()
     test_step_multistep()
     test_step_backward()
+    test_step_zero()
     # Test Method 3
     test_method_3()
+    test_method_3_not_regular()
     # Test Method 4
     test_write_solution_to_file_forward()
     test_write_solution_to_file_backward()
-    test_write_solution_to_file_no_steps()
+
