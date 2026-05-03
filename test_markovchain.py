@@ -99,13 +99,13 @@ def test_step_zero():
 
 def test_method_3():
     """Create a MarkovChain instance and assign a known regular transition matrix"""
-    markov_chain = MarkovChain()
-    markov_chain.transition_matrix = np.array([
+    mc = MarkovChain()
+    mc.transition_matrix = np.array([
         [0.7, 0.2],
         [0.3, 0.8]
     ])
     # Check regularity and verify the result is True
-    result = markov_chain.check_regularity()
+    result = mc.check_regularity()
     assert (result == True)
 
 def test_method_3_not_regular():
